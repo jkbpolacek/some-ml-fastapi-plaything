@@ -7,7 +7,7 @@ from joblib import load
 
 import pandas
 
-import model
+import src.model as model
 
 app = FastAPI(
     title="Titatnic ML API",
@@ -17,8 +17,8 @@ app = FastAPI(
 
 
 @app.on_event("startup")
-def load_model():
-    model.clf = load("../model/model.joblib")
+async def load_model():
+    model.clf = load("./model/model.joblib")
 
 
 @app.get("/")
